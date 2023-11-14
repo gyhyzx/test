@@ -11,8 +11,9 @@ export interface MenuInfo {
 }
 
 const Index = () => import('@/pages/index/index.vue')
-const Home1 = () => import('@/pages/home/index.vue')
-const User = () => import('@/pages/user/index.vue')
+const TabBar = () => import('@/pages/tabBar/index.vue')
+const Home1 = () => import('@/pages/tabBar/home/index.vue')
+const User = () => import('@/pages/tabBar/user/index.vue')
 const Login = () => import('@/pages/login/index.vue')
 
 export const menus: MenuInfo[] = [
@@ -21,24 +22,30 @@ export const menus: MenuInfo[] = [
     component: Index,
     children: [
       {
-        title: '首页',
         path: '',
-        name: 'Home',
-        component: Home1,
-        icon: h(Home)
+        component: TabBar,
+        children: [
+          {
+            title: '首页',
+            path: '',
+            name: 'Home',
+            component: Home1,
+            icon: h(Home)
+          },
+          {
+            title: '我的',
+            path: '/user',
+            name: 'User',
+            component: User,
+            icon: h(My)
+          }
+        ]
       },
       {
-        title: '我的',
-        path: '/user',
-        name: 'User',
-        component: User,
-        icon: h(My)
+        path: '/login',
+        name: 'Login',
+        component: Login
       }
     ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
   }
 ]

@@ -58,8 +58,7 @@
     "@tarojs/taro": "3.6.18",
     "pinia": "^2.1.7",
     "taro-plugin-pinia": "^1.0.0",
-    "vue": "^3.3.8",
-    "vue-router": "^4.2.5"
+    "vue": "^3.3.8"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",

@@ -71,6 +71,24 @@ export default defineConfig(async (merge) => {
         }
       },
       webpackChain(chain) {
+        // 处理预览文件过大
+        chain.merge({
+          plugin: {
+            install: {
+              plugin: require('terser-webpack-plugin'),
+              args: [
+                {
+                  terserOptions: {
+                    compress: true, // 默认使用terser压缩
+                    // mangle: false,
+                    keep_classnames: true, // 不改变class名称
+                    keep_fnames: true // 不改变函数名称
+                  }
+                }
+              ]
+            }
+          }
+        })
         chain
           .plugin('analyzer')
           .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
@@ -85,13 +103,7 @@ export default defineConfig(async (merge) => {
             imports: [
               'vue',
               {
-                'lodash-es': [['*', '_']],
-                'vue-router': [
-                  'createRouter',
-                  'createWebHashHistory',
-                  'useRouter',
-                  'useRoute'
-                ]
+                'lodash-es': [['*', '_']]
               },
               'pinia'
             ],

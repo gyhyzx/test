@@ -37,7 +37,7 @@
         />
       </nut-swiper-item>
     </nut-swiper>
-    <nut-cell title="消息">
+    <nut-cell title="消息" @click="onGoNotify">
       <template #icon>
         <nut-badge :value="8">
           <IconFont name="notice" />
@@ -64,12 +64,13 @@
 
 <script setup lang="ts">
 import { Date, Share, Order, IconFont } from '@nutui/icons-vue-taro'
+import Taro from '@tarojs/taro'
 
 const activeNo = ref(0)
 
-onMounted(async () => {
-  // await getAllUser().then((res) => {
-  //   console.log(res)
-  // })
-})
+function onGoNotify() {
+  Taro.navigateTo({
+    url: 'notify/index'
+  })
+}
 </script>

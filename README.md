@@ -1,17 +1,20 @@
 # 筑楷项目移动端 
 ## 技术选型
 基础框架：Taro[官网](https://taro-docs.jd.com/docs/)、Vue3、TypeScript
+
 状态管理器：Pinia[官网](https://pinia.web3doc.top/)
+
 UI组件：NutUI Vue Taro[官网](https://nutui.jd.com/taro/vue/4x/#/zh-CN/guide/intro)
 ## 环境准备
 Node版本16+
+
 安装 Taro 命令行工具
 
 ```bash
 # 使用 npm 安装 CLI
 $ npm install -g @tarojs/cli
 ```
-推荐适用pnpm
+推荐使用pnpm
 
 ```bash
 npm install pnpm -g

@@ -1,0 +1,10 @@
+{
+  "light": {
+    "navBgColor": "#ffffff",
+    "tabFontColor": "#ffffff"
+  },
+  "dark": {
+    "navBgColor": "#000000",
+    "tabFontColor": "#000000"
+  }
+}

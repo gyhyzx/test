@@ -108,7 +108,7 @@ export default defineConfig(async (merge) => {
               'pinia'
             ],
             dts: true,
-            dirs: ['./src/store/**', './src/api/**'],
+            dirs: ['./src/store/**', './src/api/**', './src/components/**'],
             vueTemplate: true
           })
         )

@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <basic-layout>
     <span>消息页</span>
-  </view>
+  </basic-layout>
 </template>

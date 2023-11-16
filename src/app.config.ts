@@ -1,11 +1,12 @@
 export default defineAppConfig({
   pages: [
+    'pages/login/index',
     'pages/home/index',
     'pages/user/index',
-    'pages/login/index',
-    'pages/home/notify/index'
+    'pages/notify/index'
   ],
   tabBar: {
+    backgroundColor: '@tabFontColor',
     list: [
       {
         pagePath: 'pages/home/index',
@@ -21,9 +22,16 @@ export default defineAppConfig({
       }
     ]
   },
+  // 系统主题
   darkmode: true,
+  themeLocation: 'theme.json',
   window: {
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff'
+    navigationBarBackgroundColor: '@navBgColor'
+  },
+  // 权限相关
+  permission: {
+    'scope.userLocation': {
+      desc: '你的位置信息将用于签到功能'
+    }
   }
 })

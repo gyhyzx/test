@@ -1,10 +1,10 @@
 # 筑楷项目移动端 
 ## 技术选型
-基础框架：Taro[官网](https://taro-docs.jd.com/docs/)、Vue3、TypeScript
+基础框架：[Taro官网](https://taro-docs.jd.com/docs/)、Vue3、TypeScript
 
-状态管理器：Pinia[官网](https://pinia.web3doc.top/)
+状态管理器：[Pinia官网](https://pinia.web3doc.top/)
 
-UI组件：NutUI Vue Taro[官网](https://nutui.jd.com/taro/vue/4x/#/zh-CN/guide/intro)
+UI组件：[NutUI Vue Taro官网](https://nutui.jd.com/taro/vue/4x/#/zh-CN/guide/intro)
 ## 环境准备
 Node版本16+
 
@@ -12,7 +12,7 @@ Node版本16+
 
 ```bash
 # 使用 npm 安装 CLI
-$ npm install -g @tarojs/cli
+npm install -g @tarojs/cli
 ```
 推荐使用pnpm
 
@@ -44,3 +44,4 @@ npm run build:weapp
 ```bash
 <style scoped></style>
 ```
+2.所有页面以<basic-layout></basic-layout>作为根组件保证UI组件适配不同主题

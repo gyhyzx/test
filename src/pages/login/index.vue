@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <basic-layout>
     <view class="mx-15 mt-30">
       <h1 class="text-2xl">登录</h1>
       <span class="font-light text-xs opacity-80">账号与PC端共用</span>
@@ -33,7 +33,7 @@
         </nut-form-item>
       </nut-form>
     </view>
-  </view>
+  </basic-layout>
 </template>
 
 <script setup lang="ts">

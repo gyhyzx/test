@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <basic-layout>
     <nut-swiper
       :init-page="activeNo"
       :loop="true"
@@ -59,7 +59,7 @@
         <Order />
       </template>
     </nut-cell>
-  </view>
+  </basic-layout>
 </template>
 
 <script setup lang="ts">
@@ -70,7 +70,7 @@ const activeNo = ref(0)
 
 function onGoNotify() {
   Taro.navigateTo({
-    url: 'notify/index'
+    url: '/pages/notify/index'
   })
 }
 </script>

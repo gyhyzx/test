@@ -1,30 +1,36 @@
 <template>
   <basic-layout>
-    <view class="py-10 text-center box-border bg-yellow">
-      <view>
-        <nut-avatar size="large">
-          <img :src="user.avatar" />
-        </nut-avatar>
-      </view>
-      <view class="mt-2">
-        <span>{{ user.username }}</span>
-      </view>
+    <view
+      class="py-10 text-center box-border"
+      style="background-color: #434343"
+    >
+      <nut-avatar size="large">
+        <img :src="user.avatar" />
+      </nut-avatar>
+      <span class="text-white mt-2">{{ user.username }}</span>
     </view>
-    <view>
-      <nut-cell title="打卡记录">
-        <template #link>
-          <IconFont name="rect-right" />
-        </template>
-      </nut-cell>
-    </view>
+    <nut-cell title="打卡记录">
+      <template #icon>
+        <Date />
+      </template>
+      <template #link>
+        <RectRight />
+      </template>
+    </nut-cell>
     <view class="fixed bottom-0 w-full">
-      <nut-button style="width: 100%" type="primary">退出登录</nut-button>
+      <nut-button style="width: 100%" shape="square" type="primary"
+        >退出登录</nut-button
+      >
     </view>
   </basic-layout>
 </template>
 
 <script setup lang="ts">
-import { IconFont } from '@nutui/icons-vue-taro'
+import { RectRight, Date } from '@nutui/icons-vue-taro'
+
+definePageConfig({
+  navigationBarTitleText: '用户信息'
+})
 
 const user: Record<string, string> = reactive({
   avatar:

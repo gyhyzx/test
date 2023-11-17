@@ -44,8 +44,9 @@ npm run build:weapp
 ```bash
 <style scoped></style>
 ```
-2.所有页面以下面组件作为根组件包裹、保证UI组件适配不同主题
+2.所有页面以下面组件作为根组件包裹，保证UI组件适配不同主题
 
 ```bash
 <basic-layout></basic-layout>
 ```
+3.Taro不支持以相对路径引用本地静态资源，需使用js导入使用

@@ -37,6 +37,10 @@
 </template>
 
 <script setup lang="ts">
+definePageConfig({
+  navigationBarTitleText: '登录'
+})
+
 const loginParams: Record<string, string> = {
   username: '',
   password: ''

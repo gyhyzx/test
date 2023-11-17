@@ -5,72 +5,49 @@
       :loop="true"
       auto-play="3000"
       direction="vertical"
-      class="h-450"
+      class="h-300"
       :pagination-visible="true"
     >
-      <nut-swiper-item>
-        <img
-          class="w-full h-full"
-          src="https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg"
-          alt=""
-        />
-      </nut-swiper-item>
-      <nut-swiper-item>
-        <img
-          class="w-full h-full"
-          src="https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg"
-          alt=""
-        />
-      </nut-swiper-item>
-      <nut-swiper-item>
-        <img
-          class="w-full h-full"
-          src="https://storage.360buyimg.com/jdc-article/welcomenutui.jpg"
-          alt=""
-        />
-      </nut-swiper-item>
-      <nut-swiper-item>
-        <img
-          class="w-full h-full"
-          src="https://storage.360buyimg.com/jdc-article/fristfabu.jpg"
-          alt=""
-        />
+      <nut-swiper-item v-for="(item, index) in swiperList" :key="index">
+        <img class="w-full h-full" :src="item" alt="" />
       </nut-swiper-item>
     </nut-swiper>
-    <nut-cell title="消息" @click="onGoNotify">
-      <template #icon>
-        <nut-badge :value="8">
-          <IconFont name="notice" />
+    <nut-grid :border="false" :clickable="true">
+      <nut-grid-item
+        v-for="(item, index) in menus"
+        :key="index"
+        :text="item.description"
+      >
+        <nut-badge :value="item.value" @click="onClickMenu(item)">
+          <nut-avatar size="large" shape="square" :bg-color="'@commonBgColor'">
+            <img :src="item.src" alt="" />
+          </nut-avatar>
         </nut-badge>
-      </template>
-    </nut-cell>
-    <nut-cell title="打卡">
-      <template #icon>
-        <Date />
-      </template>
-    </nut-cell>
-    <nut-cell title="流程">
-      <template #icon>
-        <Share />
-      </template>
-    </nut-cell>
-    <nut-cell title="其他事项">
-      <template #icon>
-        <Order />
-      </template>
-    </nut-cell>
+      </nut-grid-item>
+    </nut-grid>
   </basic-layout>
 </template>
 
 <script setup lang="ts">
-import { Date, Share, Order, IconFont } from '@nutui/icons-vue-taro'
 import Taro from '@tarojs/taro'
+import { menus, MenuInfo } from '@/api/menu'
 
-const activeNo = ref(0)
+definePageConfig({
+  navigationBarTitleText: '首页'
+})
 
-function onGoNotify() {
+const activeNo = ref<number>(0)
+
+const swiperList = reactive<Array<string>>([
+  'https://storage.360buyimg.com/jdc-article/NutUItaro34.jpg',
+  'https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg',
+  'https://storage.360buyimg.com/jdc-article/welcomenutui.jpg',
+  'https://storage.360buyimg.com/jdc-article/fristfabu.jpg'
+])
+
+function onClickMenu(item: MenuInfo) {
   Taro.navigateTo({
-    url: '/pages/notify/index'
+    url: item.path
   })
 }
 </script>

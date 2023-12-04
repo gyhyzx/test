@@ -9,9 +9,6 @@ import { useThemeStore } from './store/modules/theme'
 const App = createApp({
   // 入口组件不需要实现 render 方法，即使实现了也会被 taro 所覆盖
   async mounted() {
-    Taro.showLoading({
-      title: '正在加载中...'
-    })
     // 首次进入跟随系统渲染主题
     const themeStore = useThemeStore()
     await Taro.getSystemInfo({
@@ -23,20 +20,16 @@ const App = createApp({
     Taro.onThemeChange((res) => {
       themeStore.setTheme(res.theme)
     })
-    try {
-      // 首先通过开放接口获取code
-      // await Taro.login({
-      //   complete: (res) => {
-      //     console.log(res)
-      //   }
-      // })
-      // 通过code去后端获取openid、已存在则返回token跳转home页、否则留在登录页
-      Taro.switchTab({
-        url: '/pages/home/index'
-      })
-    } finally {
-      Taro.hideLoading()
-    }
+    // 首先通过开放接口获取code
+    // await Taro.login({
+    //   complete: (res) => {
+    //     console.log(res)
+    //   }
+    // })
+    // 通过code去后端获取openid、已存在则返回token跳转home页、否则留在登录页
+    Taro.switchTab({
+      url: '/pages/home/index'
+    })
   }
 })
 

@@ -28,6 +28,7 @@
             :loading="loading"
             shape="square"
             type="primary"
+            @click="onLogin"
             >登录</nut-button
           >
         </nut-form-item>
@@ -37,6 +38,8 @@
 </template>
 
 <script setup lang="ts">
+import Taro from '@tarojs/taro'
+
 definePageConfig({
   navigationBarTitleText: '登录'
 })
@@ -47,4 +50,10 @@ const loginParams: Record<string, string> = {
 }
 
 const loading = ref<boolean>(false)
+
+function onLogin() {
+  Taro.switchTab({
+    url: '/pages/home/index'
+  })
+}
 </script>

@@ -94,6 +94,7 @@ export default defineConfig(async (merge) => {
           .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
         chain.plugin('unplugin-vue-components').use(
           ComponentsPlugin({
+            dirs: ['./src/components/**', './src/pages/*/components/**'],
             include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
             resolvers: [NutUIResolver({ taro: true })]
           })
@@ -108,7 +109,7 @@ export default defineConfig(async (merge) => {
               'pinia'
             ],
             dts: true,
-            dirs: ['./src/store/**', './src/api/**', './src/components/**'],
+            dirs: ['./src/store/**', './src/api/**'],
             vueTemplate: true
           })
         )

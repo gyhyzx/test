@@ -94,7 +94,11 @@ export default defineConfig(async (merge) => {
           .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
         chain.plugin('unplugin-vue-components').use(
           ComponentsPlugin({
-            dirs: ['./src/components/**', './src/pages/*/components/**'],
+            dirs: [
+              './src/components/**',
+              './src/pages/*/components/**',
+              './src/busPackage/pages/*/components/**'
+            ],
             include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
             resolvers: [NutUIResolver({ taro: true })]
           })
@@ -104,12 +108,13 @@ export default defineConfig(async (merge) => {
             imports: [
               'vue',
               {
-                'lodash-es': [['*', '_']]
+                'lodash-es': [['*', '_']],
+                dayjs: [['default', '_d']]
               },
               'pinia'
             ],
             dts: true,
-            dirs: ['./src/store/**', './src/api/**'],
+            dirs: ['./src/store/**', './src/api/**', './src/busPackage/api/**'],
             vueTemplate: true
           })
         )

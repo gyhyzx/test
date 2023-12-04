@@ -71,7 +71,7 @@ const user: Record<string, string> = reactive({
 
 function onGoSignInRecord() {
   Taro.navigateTo({
-    url: '/pages/signIn/record'
+    url: '/busPackage/pages/signIn/record'
   })
 }
 

@@ -10,12 +10,12 @@ export const menus: MenuInfo[] = [
   {
     src: images.signPng,
     description: '打卡',
-    path: '/pages/signIn/index'
+    path: '/busPackage/pages/signIn/index'
   },
   {
     src: images.videoPng,
     description: '监控',
-    path: '/pages/video/index'
+    path: '/busPackage/pages/video/index'
   },
   {
     src: images.flowPng,

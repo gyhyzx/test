@@ -50,3 +50,5 @@ npm run build:weapp
 <basic-layout></basic-layout>
 ```
 3.Taro不支持以相对路径引用本地静态资源，需使用js导入使用
+
+4.tabBar页面和login页面放在主包下，所有业务代码存放在busPackage分包下，tabBar页面只提供对应业务页面的入口，以减小主包体积

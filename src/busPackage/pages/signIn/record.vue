@@ -26,8 +26,8 @@
       v-model:visible="isVisible"
       :default-value="searchParams.date"
       type="range"
-      :start-date="moment().startOf('year').format('YYYY-MM-DD')"
-      :end-date="moment().format('YYYY-MM-DD')"
+      :start-date="dayjs().startOf('year').format('YYYY-MM-DD')"
+      :end-date="dayjs().format('YYYY-MM-DD')"
       :is-auto-back-fill="true"
       @choose="setChooseValue"
       @close="onSearch"
@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 definePageConfig({
   navigationBarTitleText: '打卡记录'
@@ -94,42 +94,6 @@ const tableData = reactive<Array<Record<string, any>>>([
   {
     type: '二维码打卡',
     date: '2023-11-01'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
-  },
-  {
-    type: '定位打卡',
-    date: '2023-11-13'
   },
   {
     type: '定位打卡',

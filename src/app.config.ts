@@ -4,10 +4,14 @@ export default defineAppConfig({
     'pages/login/index',
     'pages/home/index',
     'pages/notice/index',
-    'pages/user/index',
-    'pages/video/index',
-    'pages/signIn/index',
-    'pages/signIn/record'
+    'pages/user/index'
+  ],
+  // 分包
+  subPackages: [
+    {
+      root: 'busPackage',
+      pages: ['pages/signIn/index', 'pages/signIn/record', 'pages/video/index']
+    }
   ],
   tabBar: {
     color: '@tabTxtColor',

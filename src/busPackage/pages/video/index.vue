@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { VideoInfo, videos } from '@/api/video'
+import { VideoInfo, videos } from '@/busPackage/api/video'
 
 definePageConfig({
   navigationBarTitleText: '监控'

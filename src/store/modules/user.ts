@@ -1,13 +1,15 @@
 import { UserInfo } from '@/api/user'
-import { defineStore } from 'pinia'
 
 const user: UserInfo = {
   id: 'dlasjdla',
   username: 'admin'
 }
 
+const permissions: String[] = []
+
 export const useUserStore = defineStore('user', {
   state: () => ({
-    currentUser: user
+    currentUser: user,
+    permissions: permissions
   })
 })

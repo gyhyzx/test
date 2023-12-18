@@ -42,14 +42,14 @@ const notices = reactive<Array<any>>([
   },
   {
     id: 2,
-    title: '流程待审批',
-    content: '请假审批',
+    title: '放假通知',
+    content: '假滴',
     status: 0
   },
   {
     id: 3,
-    title: '流程待审批',
-    content: '转正审批',
+    title: '加班通知',
+    content: '真滴',
     status: 0
   }
 ])

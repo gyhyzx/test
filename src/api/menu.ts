@@ -31,5 +31,10 @@ export const menus: MenuInfo[] = [
     src: images.knowledgePng,
     description: 'AI知识库',
     path: ''
+  },
+  {
+    src: images.moneyPng,
+    description: '投资管控',
+    path: ''
   }
 ]

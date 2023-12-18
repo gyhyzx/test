@@ -1,5 +1,4 @@
 import { AuthInfo } from '@/api/auth'
-import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({

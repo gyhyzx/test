@@ -26,8 +26,8 @@
       v-model:visible="isVisible"
       :default-value="searchParams.date"
       type="range"
-      :start-date="dayjs().startOf('year').format('YYYY-MM-DD')"
-      :end-date="dayjs().format('YYYY-MM-DD')"
+      :start-date="startTime"
+      :end-date="endTime"
       :is-auto-back-fill="true"
       @choose="setChooseValue"
       @close="onSearch"
@@ -54,11 +54,12 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from 'dayjs'
-
 definePageConfig({
   navigationBarTitleText: '打卡记录'
 })
+
+const startTime = _d().startOf('year').format('YYYY-MM-DD')
+const endTime = _d().format('YYYY-MM-DD')
 
 const isVisible = ref<boolean>(false)
 

@@ -43,3 +43,9 @@ function onChangeVideo(item: VideoInfo) {
   videoSrc.value = item.stream as string
 }
 </script>
+
+<style lang="scss">
+.nut-tab-pane {
+  padding: 0;
+}
+</style>

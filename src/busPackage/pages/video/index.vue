@@ -1,6 +1,12 @@
 <template>
   <basic-layout class="h-full">
-    <live-player class="w-full" mode="live" :src="videoSrc" :autoplay="true" />
+    <video
+      class="w-full"
+      :src="videoSrc"
+      poster="https://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg"
+      :controls="true"
+    />
+    <!-- <live-player class="w-full" mode="live" :src="videoSrc" :autoplay="true" /> -->
     <nut-tabs
       v-model="value"
       style="height: calc(100% - 230px)"
@@ -36,7 +42,8 @@ definePageConfig({
 
 const value = ref<string>('1')
 
-const videoSrc = ref<string>('rtmp://mobliestream.c3tv.com:554/live/goodtv.sdp')
+// const videoSrc = ref<string>('rtmp://mobliestream.c3tv.com:554/live/goodtv.sdp')
+const videoSrc = ref<string>('')
 
 function onChangeVideo(item: VideoInfo) {
   console.log(item)

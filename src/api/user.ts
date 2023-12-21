@@ -6,5 +6,5 @@ export interface UserInfo {
 const baseUrl = getBaseUrl('admin')
 
 export function getAllUser() {
-  return getRequest(baseUrl + '/user/listAll')
+  return getRequest<undefined, UserInfo[]>(baseUrl + '/user/listAll')
 }

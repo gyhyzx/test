@@ -18,7 +18,20 @@
           </nut-collapse-item>
         </nut-collapse>
       </nut-tab-pane>
-      <nut-tab-pane title="已读" pane-key="1"> Tab 2 </nut-tab-pane>
+      <nut-tab-pane title="已读" pane-key="1">
+        <nut-collapse v-model="secActiveNo" :accordion="true">
+          <nut-collapse-item
+            v-for="item in secNotices"
+            :key="item.id"
+            :name="item.id"
+            :value="item.time"
+            :title="item.title"
+            @click="onChangeStatus(item)"
+          >
+            {{ item.content }}
+          </nut-collapse-item>
+        </nut-collapse>
+      </nut-tab-pane>
     </nut-tabs>
   </basic-layout>
 </template>
@@ -31,26 +44,44 @@ definePageConfig({
 const active = ref<number>(0)
 
 const activeNo = ref<number>(0)
+const secActiveNo = ref<number>(0)
 
 const notices = reactive<Array<any>>([
   {
     id: 1,
-    title: '流程待审批',
-    content: '费用审批',
+    title: '现场告警',
+    content: '现场告警，需要处理',
     status: 0,
     time: '2023-12-04'
   },
   {
     id: 2,
-    title: '放假通知',
-    content: '假滴',
+    title: '流程审批',
+    content: '费用审批',
     status: 0
   },
   {
     id: 3,
-    title: '加班通知',
-    content: '真滴',
+    title: '进度计划通知',
+    content: '进度搁置',
     status: 0
+  }
+])
+
+const secNotices = reactive<Array<any>>([
+  {
+    id: 1,
+    title: '费用报销',
+    content: '费用报销',
+    status: 0,
+    time: '2023-12-04'
+  },
+  {
+    id: 2,
+    title: '合同签订情况',
+    content: '合同签订未完成',
+    status: 0,
+    time: '2023-12-21'
   }
 ])
 

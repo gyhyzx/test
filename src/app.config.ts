@@ -10,7 +10,12 @@ export default defineAppConfig({
   subPackages: [
     {
       root: 'busPackage',
-      pages: ['pages/signIn/index', 'pages/signIn/record', 'pages/video/index']
+      pages: [
+        'pages/signIn/index',
+        'pages/signIn/record',
+        'pages/video/index',
+        'pages/scene/index'
+      ]
     }
   ],
   tabBar: {
@@ -49,7 +54,7 @@ export default defineAppConfig({
   // 权限相关
   permission: {
     'scope.userLocation': {
-      desc: '你的位置信息将用于签到功能'
+      desc: '此功能所需权限、请先授权'
     }
   },
   requiredPrivateInfos: ['getLocation'],

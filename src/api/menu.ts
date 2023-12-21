@@ -25,7 +25,7 @@ export const menus: MenuInfo[] = [
   {
     src: images.locationPng,
     description: '现场事项',
-    path: ''
+    path: '/busPackage/pages/scene/index'
   },
   {
     src: images.knowledgePng,

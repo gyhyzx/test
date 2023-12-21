@@ -12,7 +12,7 @@ Node版本16+
 
 ```bash
 # 使用 npm 安装 CLI
-npm install -g @tarojs/cli
+npm install -g @tarojs/cli@3.6.18
 ```
 推荐使用pnpm
 

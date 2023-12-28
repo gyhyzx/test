@@ -8,14 +8,7 @@
         <Uploader />
       </template>
     </nut-navbar>
-    <scroll-view
-      :scroll-y="true"
-      style="height: calc(100% - 64px)"
-      :show-scrollbar="false"
-      :enhanced="true"
-      :on-scroll-to-lower="onScrollToLower"
-      :trap-scroll="true"
-    >
+    <scroll-view :scroll-y="true" style="height: calc(100% - 64px)">
       <nut-swipe-group lock>
         <nut-swipe v-for="item in list" :key="item.id" :name="item.id">
           <nut-cell :title="item.title" :sub-title="item.description" />
@@ -37,6 +30,19 @@
           </template>
         </nut-swipe>
       </nut-swipe-group>
+      <nut-button
+        v-if="Number(pages) !== pageParams.page"
+        :loading="btnLoading"
+        block
+        plain
+        @click="loadMore"
+        >加载更多...</nut-button
+      >
+      <nut-divider
+        v-else-if="Number(pages) === pageParams.page && list.length > 10"
+        dashed
+        >人也是有底线的...</nut-divider
+      >
     </scroll-view>
     <nut-action-sheet v-model:visible="visible" :title="title">
       <nut-form>
@@ -61,7 +67,7 @@
             type="text"
           />
         </nut-form-item>
-        <nut-form-item label="纬度">
+        <!-- <nut-form-item label="纬度">
           <nut-input-number
             v-model="formData.latitude"
             class="nut-input-text"
@@ -84,13 +90,8 @@
             decimal-places="5"
             :disabled="isEdit"
           />
-        </nut-form-item>
-        <nut-form-item label="拍摄">
-          <nut-uploader
-            :url="uploadUrl"
-            :source-type="['camera']"
-          ></nut-uploader>
-        </nut-form-item>
+        </nut-form-item> -->
+        <nut-form-item label="拍摄"> </nut-form-item>
         <nut-cell class="flex justify-end">
           <nut-button type="primary" size="small" @click="onSubmit"
             >提交</nut-button
@@ -107,23 +108,27 @@ import { SceneInfo } from '@/busPackage/api/scene'
 import { Uploader, Search } from '@nutui/icons-vue-taro'
 import { AddressInfo } from '@/busPackage/utils/address'
 
-function onScrollToLower(e) {
-  console.log(e)
-}
+const pages = ref<number>(1)
 
 const pageParams = ref<PageParams>({
-  page: 0,
-  size: 10
+  page: 1,
+  size: 10,
+  serviceType: 'site_matter'
 })
 const list = ref<SceneInfo[]>([])
 async function getSceneList() {
-  list.value = (await getScenePageApi(pageParams.value)).records
+  pageParams.value.page = 1
+  const res = await getScenePageApi(pageParams.value)
+  pages.value = res.pages
+  list.value = res.records
 }
 onMounted(async () => {
   await getSceneList()
 })
 
-const formData = ref<SceneInfo>({})
+const formData = ref<SceneInfo>({
+  serviceType: 'site_matter'
+})
 const visible = ref<boolean>(false)
 const title = ref<string>('')
 async function onSubmit() {
@@ -140,6 +145,9 @@ async function onSubmit() {
 
 const isEdit = ref<boolean>(false)
 async function onAdd() {
+  formData.value = {
+    serviceType: 'site_matter'
+  }
   title.value = '新增事项'
   isEdit.value = false
   visible.value = true
@@ -159,6 +167,14 @@ async function onDel(item: SceneInfo) {
   await getSceneList()
 }
 
-// 上传
-const uploadUrl = ref<string>('')
+const btnLoading = ref<boolean>(false)
+
+async function loadMore() {
+  btnLoading.value = true
+  pageParams.value.page += 1
+  const res = await getScenePageApi(pageParams.value)
+  pages.value = res.pages
+  list.value = _.concat(list.value, res.records)
+  btnLoading.value = false
+}
 </script>

@@ -1,5 +1,6 @@
 // import { useAuthStore } from '@/store/modules/auth'
 import Taro, { Chain, RequestTask } from '@tarojs/taro'
+import qs from 'qs'
 
 export interface PageParams {
   page: number
@@ -9,7 +10,7 @@ export interface PageParams {
 
 export interface RespPageBean<T = any> {
   current: number
-  page: number
+  pages: number
   size: number
   total: number
   orders: T[]
@@ -35,7 +36,7 @@ const interceptor = <T = any>(chain: Chain) => {
   requestParams.timeout = 60000
 
   if (!_.get(header, 'content-type')) {
-    _.set(header, 'content-type', 'application/json;charset=UTF-8')
+    _.set(header, 'content-type', 'application/json')
   }
 
   _.set(
@@ -111,12 +112,14 @@ Taro.addInterceptor(responseInterceptor)
 // 请求封装
 export async function postRequest<reqT = any, resT = any>(
   url: string,
+  params: Recordable,
   data?: reqT,
-  header: string = 'application/json;charset=UTF-8'
+  header: string = 'application/json'
 ): Promise<resT> {
+  const _url = params ? `${url}?${qs.stringify(params)}` : url
   const res = await Taro.request({
     method: 'POST',
-    url: url,
+    url: _url,
     data: data,
     header: {
       'content-type': header
@@ -152,7 +155,7 @@ export async function delRequest<reqT = string | number>(
 export async function putRequest<reqT = any, resT = any>(
   url: string,
   data?: reqT,
-  header: string = 'application/json;charset=UTF-8'
+  header: string = 'application/json'
 ): Promise<resT> {
   const res = await Taro.request({
     method: 'PUT',

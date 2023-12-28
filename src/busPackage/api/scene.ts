@@ -9,7 +9,8 @@ export interface SceneInfo {
   latitude?: number
   longitude?: number
   responsiblePersonList?: string
-  fileList?: string[]
+  fileGid?: string
+  serviceType?: string
 }
 
 const baseUrl = getBaseUrl('opmcp')
@@ -23,7 +24,7 @@ export function getScenePageApi(params: PageParams) {
 }
 
 export function saveSceneApi(data: SceneInfo) {
-  return postRequest<SceneInfo, SceneInfo>(baseUrl + prefix + '/save', data)
+  return postRequest<SceneInfo, SceneInfo>(baseUrl + prefix + '/save', {}, data)
 }
 
 export function delSceneApi(id: string) {

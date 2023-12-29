@@ -24,7 +24,7 @@ const keyMap: Recordable<string | undefined> = {
   opmcp: process.env.TARO_APP_OPMCP
 }
 
-export function getBaseUrl(type: 'admin' | 'opmcp'): string {
+export function getServiceName(type: 'admin' | 'opmcp'): string {
   return keyMap[type]!
 }
 

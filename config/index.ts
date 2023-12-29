@@ -97,7 +97,8 @@ export default defineConfig(async (merge) => {
             dirs: [
               './src/components/**',
               './src/pages/*/components/**',
-              './src/busPackage/pages/*/components/**'
+              './src/busPackage/pages/*/components/**',
+              './src/busPackage/components/**'
             ],
             include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
             resolvers: [NutUIResolver({ taro: true })]

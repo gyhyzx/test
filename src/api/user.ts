@@ -3,7 +3,7 @@ export interface UserInfo {
   username: string
 }
 
-const baseUrl = getBaseUrl('admin')
+const baseUrl = getServiceName('admin')
 
 export function getAllUserApi() {
   return getRequest<undefined, UserInfo[]>(baseUrl + '/user/listAll')

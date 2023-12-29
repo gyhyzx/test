@@ -1,5 +1,5 @@
 <template>
-  <basic-layout class="h-full">
+  <basic-layout>
     <nut-navbar title="现场事项" @click-right="onAdd">
       <template #left>
         <Search />
@@ -16,16 +16,16 @@
             <nut-button
               shape="square"
               style="height: 100%"
-              type="danger"
-              @click="onDel(item)"
-              >删除</nut-button
+              type="info"
+              @click="onUpdate(item)"
+              >修改</nut-button
             >
             <nut-button
               shape="square"
               style="height: 100%"
-              type="info"
-              @click="onUpdate(item)"
-              >修改</nut-button
+              type="danger"
+              @click="onDel(item)"
+              >删除</nut-button
             >
           </template>
         </nut-swipe>
@@ -67,31 +67,43 @@
             type="text"
           />
         </nut-form-item>
-        <!-- <nut-form-item label="纬度">
+        <nut-form-item label="纬度">
           <nut-input-number
             v-model="formData.latitude"
-            class="nut-input-text"
-            input-width="80px"
-            button-size="20px"
-            min="-180"
-            max="180"
-            decimal-places="5"
+            :min="-180"
+            :max="180"
+            :decimal-places="5"
+            :input-width="80"
+            :button-size="20"
             :disabled="isEdit"
           />
         </nut-form-item>
         <nut-form-item label="经度">
           <nut-input-number
             v-model="formData.longitude"
-            class="nut-input-text w-full"
-            input-width="80px"
-            button-size="20px"
-            min="-180"
-            max="180"
-            decimal-places="5"
+            :min="-180"
+            :max="180"
+            :decimal-places="5"
+            :input-width="80"
+            :button-size="20"
             :disabled="isEdit"
           />
-        </nut-form-item> -->
-        <nut-form-item label="拍摄"> </nut-form-item>
+        </nut-form-item>
+        <nut-form-item label="拍摄">
+          <upload-img
+            :gid="formData.fileGid"
+            :extra-params="{
+              businessKey: 'site_matter_records',
+              scopeId: '495220546183237'
+            }"
+            :limit="4"
+            @success="
+              (val: string) => {
+                formData.fileGid = val
+              }
+            "
+          />
+        </nut-form-item>
         <nut-cell class="flex justify-end">
           <nut-button type="primary" size="small" @click="onSubmit"
             >提交</nut-button

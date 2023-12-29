@@ -1,8 +1,6 @@
 <template>
   <nut-config-provider :theme="theme">
-    <view class="h-full">
-      <slot />
-    </view>
+    <slot />
   </nut-config-provider>
 </template>
 

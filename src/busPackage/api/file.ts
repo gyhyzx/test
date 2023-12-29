@@ -21,7 +21,7 @@ export interface FileParams {
   scopeId?: string
 }
 
-const baseUrl = getBaseUrl('opmcp')
+const baseUrl = getServiceName('opmcp')
 const prefix = '/file'
 
 export function getFileListByGidApi(gid: string) {

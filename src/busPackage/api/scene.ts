@@ -13,7 +13,7 @@ export interface SceneInfo {
   serviceType?: string
 }
 
-const baseUrl = getBaseUrl('opmcp')
+const baseUrl = getServiceName('opmcp')
 const prefix = '/site_matter'
 
 export function getScenePageApi(params: PageParams) {

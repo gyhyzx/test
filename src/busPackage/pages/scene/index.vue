@@ -1,49 +1,39 @@
 <template>
   <basic-layout>
-    <nut-navbar title="现场事项" @click-right="onAdd">
-      <template #left>
-        <Search />
+    <custom-list
+      ref="customListRef"
+      placeholder="输入事项标题搜索..."
+      :extra-params="{ serviceType: 'site_matter' }"
+      :query-fn="getScenePageApi"
+      :search-fields="['title']"
+      @add="onAdd"
+      @list="onList"
+      @concat="onConcat"
+    >
+      <template #list>
+        <nut-swipe-group lock>
+          <nut-swipe v-for="item in sceneList" :key="item.id" :name="item.id">
+            <nut-cell :title="item.title" :sub-title="item.description" />
+            <template #right>
+              <nut-button
+                shape="square"
+                style="height: 100%"
+                type="info"
+                @click="onUpdate(item)"
+                >修改</nut-button
+              >
+              <nut-button
+                shape="square"
+                style="height: 100%"
+                type="danger"
+                @click="onDel(item)"
+                >删除</nut-button
+              >
+            </template>
+          </nut-swipe>
+        </nut-swipe-group>
       </template>
-      <template #right>
-        <Uploader />
-      </template>
-    </nut-navbar>
-    <scroll-view :scroll-y="true" style="height: calc(100% - 64px)">
-      <nut-swipe-group lock>
-        <nut-swipe v-for="item in list" :key="item.id" :name="item.id">
-          <nut-cell :title="item.title" :sub-title="item.description" />
-          <template #right>
-            <nut-button
-              shape="square"
-              style="height: 100%"
-              type="info"
-              @click="onUpdate(item)"
-              >修改</nut-button
-            >
-            <nut-button
-              shape="square"
-              style="height: 100%"
-              type="danger"
-              @click="onDel(item)"
-              >删除</nut-button
-            >
-          </template>
-        </nut-swipe>
-      </nut-swipe-group>
-      <nut-button
-        v-if="Number(pages) !== pageParams.page"
-        :loading="btnLoading"
-        block
-        plain
-        @click="loadMore"
-        >加载更多...</nut-button
-      >
-      <nut-divider
-        v-else-if="Number(pages) === pageParams.page && list.length > 10"
-        dashed
-        >人也是有底线的...</nut-divider
-      >
-    </scroll-view>
+    </custom-list>
     <nut-action-sheet v-model:visible="visible" :title="title">
       <nut-form>
         <nut-form-item label="标题">
@@ -94,7 +84,7 @@
             :gid="formData.fileGid"
             :extra-params="{
               businessKey: 'site_matter_records',
-              scopeId: '495220546183237'
+              scopeId: projectId
             }"
             :limit="4"
             @success="
@@ -115,29 +105,26 @@
 </template>
 
 <script setup lang="ts">
-import { PageParams } from '@/api'
-import { SceneInfo } from '@/busPackage/api/scene'
-import { Uploader, Search } from '@nutui/icons-vue-taro'
+import { SceneInfo, getScenePageApi } from '@/busPackage/api/scene'
 import { AddressInfo } from '@/busPackage/utils/address'
+import { useRouter } from '@tarojs/taro'
 
-const pages = ref<number>(1)
-
-const pageParams = ref<PageParams>({
-  page: 1,
-  size: 10,
-  serviceType: 'site_matter'
+definePageConfig({
+  navigationBarTitleText: '现场事项'
 })
-const list = ref<SceneInfo[]>([])
-async function getSceneList() {
-  pageParams.value.page = 1
-  const res = await getScenePageApi(pageParams.value)
-  pages.value = res.pages
-  list.value = res.records
+
+const customListRef = ref()
+
+// 现场事项列表展示
+const sceneList = ref<SceneInfo[]>([])
+const onList = (list: SceneInfo[]) => {
+  sceneList.value = list
 }
-onMounted(async () => {
-  await getSceneList()
-})
+const onConcat = (list: SceneInfo[]) => {
+  sceneList.value = _.concat(sceneList.value, list)
+}
 
+// 现场事项crud
 const formData = ref<SceneInfo>({
   serviceType: 'site_matter'
 })
@@ -152,7 +139,7 @@ async function onSubmit() {
   }
   formData.value = {}
   visible.value = false
-  await getSceneList()
+  await customListRef.value.beforeQuery()
 }
 
 const isEdit = ref<boolean>(false)
@@ -176,17 +163,10 @@ function onUpdate(item: SceneInfo) {
 
 async function onDel(item: SceneInfo) {
   await delSceneApi(item.id!)
-  await getSceneList()
+  await customListRef.value.beforeQuery()
 }
 
-const btnLoading = ref<boolean>(false)
-
-async function loadMore() {
-  btnLoading.value = true
-  pageParams.value.page += 1
-  const res = await getScenePageApi(pageParams.value)
-  pages.value = res.pages
-  list.value = _.concat(list.value, res.records)
-  btnLoading.value = false
-}
+// 上传文件
+const { params } = useRouter()
+const projectId = params.projectId
 </script>

@@ -1,6 +1,0 @@
-export { default as signPng } from '@/resource/images/sign.png'
-export { default as flowPng } from '@/resource/images/flow.png'
-export { default as locationPng } from '@/resource/images/location.png'
-export { default as knowledgePng } from '@/resource/images/knowledge.png'
-export { default as videoPng } from '@/resource/images/video.png'
-export { default as moneyPng } from '@/resource/images/money.png'

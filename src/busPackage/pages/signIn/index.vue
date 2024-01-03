@@ -1,5 +1,10 @@
 <template>
   <basic-layout>
+    <nut-navbar @click-right="onClickRight">
+      <template #right>
+        <span>打卡记录</span>
+      </template>
+    </nut-navbar>
     <nut-radio-group v-model="radioVal" class="w-full px-10 pt-30 box-border">
       <h1 class="text-2xl p-2">选择打卡方式</h1>
       <nut-cell>
@@ -82,6 +87,12 @@ async function onOk() {
   })
   Taro.showToast({
     title: '打卡成功'
+  })
+}
+
+function onClickRight() {
+  Taro.navigateTo({
+    url: '/busPackage/pages/signIn/record'
   })
 }
 </script>

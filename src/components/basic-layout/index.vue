@@ -1,5 +1,5 @@
 <template>
-  <nut-config-provider :theme="theme">
+  <nut-config-provider :theme="theme" :theme-vars="themeVars">
     <slot />
   </nut-config-provider>
 </template>
@@ -9,5 +9,13 @@ const themeStore = useThemeStore()
 
 const theme = computed<string>(() => {
   return themeStore.currentTheme
+})
+
+const themeVars = reactive({
+  searchbarInputBackground: '@commonBgColor',
+  tabsTitlesItemColor: '@commonTxtColor',
+  tabsTitlesBackgroundColor: '@commonBgColor',
+  tabsTitlesItemActiveColor: '@commonTxtColor',
+  collapseWrapperContentBackgroundColor: '@commonBgColor'
 })
 </script>

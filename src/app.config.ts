@@ -14,7 +14,8 @@ export default defineAppConfig({
         'pages/signIn/index',
         'pages/signIn/record',
         'pages/video/index',
-        'pages/scene/index'
+        'pages/scene/index',
+        'pages/project/detail'
       ]
     }
   ],

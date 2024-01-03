@@ -15,7 +15,7 @@
           v-for="(item, index) in cellList"
           :key="index"
           :title="item.title"
-          @click="item.fn"
+          @click="onClick(item.url)"
         >
           <template #icon>
             <IconFont :name="item.icon" />
@@ -48,18 +48,29 @@
 <script setup lang="ts">
 import Taro from '@tarojs/taro'
 import { RectRight, IconFont } from '@nutui/icons-vue-taro'
-
-const dialogVisible = ref<boolean>(false)
+import { Recordable } from '@/api'
 
 definePageConfig({
   navigationBarTitleText: '用户信息'
 })
 
-const cellList: Array<Record<string, any>> = [
+const dialogVisible = ref<boolean>(false)
+
+const cellList: Array<Recordable> = [
   {
-    title: '打卡记录',
-    fn: onGoSignInRecord,
+    title: '打卡',
+    url: '/busPackage/pages/signIn/index',
     icon: 'date'
+  },
+  {
+    title: '流程事务',
+    url: '',
+    icon: 'order'
+  },
+  {
+    title: '知识库',
+    url: '',
+    icon: 'share'
   }
 ]
 
@@ -69,9 +80,9 @@ const user: Record<string, string> = reactive({
   username: '啦啦啦'
 })
 
-function onGoSignInRecord() {
+const onClick = (url: string) => {
   Taro.navigateTo({
-    url: '/busPackage/pages/signIn/record'
+    url: url
   })
 }
 

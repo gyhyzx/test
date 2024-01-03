@@ -3,12 +3,14 @@
     "commonBgColor": "#FFF",
     "commonTxtColor": "black",
     "tabTxtColor": "#949494",
-    "tabSelectedColor": "#000"
+    "tabSelectedColor": "#000",
+    "specialBgColor": "#f7f8fa"
   },
   "dark": {
     "commonBgColor": "#000",
     "commonTxtColor": "white",
     "tabTxtColor": "#949494",
-    "tabSelectedColor": "#FFF"
+    "tabSelectedColor": "#FFF",
+    "specialBgColor": "#434343"
   }
 }

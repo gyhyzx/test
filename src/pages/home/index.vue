@@ -17,14 +17,7 @@
           @click="onGoProjectDetail(item)"
         >
           <nut-col :span="10" class="h-full">
-            <img
-              :src="
-                item.coverUrl ||
-                'https://oss.hkce.cn:9000/hkce-hydropower-opmcp/9c984d82c0088283e2add97821e045d6.png?response-content-disposition=attachment%3Bfilename%3D%E5%8F%A4%E5%AD%A6.png&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=2hDHYRYMSvIA%2F20240102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240102T085815Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=c17926c66936fca602ea322c9efb95bf50275105232daa37b133a454b785f9bc'
-              "
-              alt=""
-              class="h-full w-full"
-            />
+            <img :src="item.coverUrl" alt="" class="h-full w-full" />
           </nut-col>
           <nut-col :span="14" class="relative h-full">
             <span class="custom-title">{{ item.name }}</span>

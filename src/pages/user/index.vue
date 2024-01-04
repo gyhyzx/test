@@ -11,12 +11,7 @@
     </view>
     <view class="mx-4">
       <nut-cell-group>
-        <nut-cell
-          v-for="(item, index) in cellList"
-          :key="index"
-          :title="item.title"
-          @click="onClick(item.url)"
-        >
+        <nut-cell v-for="(item, index) in cellList" :key="index" :title="item.title" @click="onClick(item.url)">
           <template #icon>
             <IconFont :name="item.icon" />
           </template>
@@ -27,13 +22,7 @@
       </nut-cell-group>
     </view>
     <view class="fixed bottom-32 left-32 right-32">
-      <nut-button
-        style="width: 100%"
-        shape="square"
-        type="primary"
-        @click="dialogVisible = true"
-        >退出登录</nut-button
-      >
+      <nut-button style="width: 100%" shape="square" type="primary" @click="dialogVisible = true">退出登录</nut-button>
     </view>
     <nut-dialog
       v-model:visible="dialogVisible"
@@ -75,8 +64,7 @@ const cellList: Array<Recordable> = [
 ]
 
 const user: Record<string, string> = reactive({
-  avatar:
-    'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png',
+  avatar: 'https://img12.360buyimg.com/imagetools/jfs/t1/196430/38/8105/14329/60c806a4Ed506298a/e6de9fb7b8490f38.png',
   username: '啦啦啦'
 })
 

@@ -10,10 +10,7 @@ export async function getAddress(): Promise<AddressInfo> {
   // 首先获取用户的授权列表，如果没有授权位置，则请求授权
   await Taro.getSetting({
     success: (res) => {
-      if (
-        !_.has(res.authSetting, 'scope.userLocation') ||
-        !_.get(res.authSetting, 'scope.userLocation', 'false')
-      ) {
+      if (!_.has(res.authSetting, 'scope.userLocation') || !_.get(res.authSetting, 'scope.userLocation', 'false')) {
         // 调起用户授权弹窗
         Taro.authorize({
           scope: 'scope.userLocation'

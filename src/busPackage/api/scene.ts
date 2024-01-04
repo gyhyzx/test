@@ -17,10 +17,7 @@ const baseUrl = getServiceName('opmcp')
 const prefix = '/site_matter'
 
 export function getScenePageApi(params: PageParams) {
-  return getRequest<PageParams, RespPageBean<SceneInfo>>(
-    baseUrl + prefix + '/page',
-    params
-  )
+  return getRequest<PageParams, RespPageBean<SceneInfo>>(baseUrl + prefix + '/page', params)
 }
 
 export function saveSceneApi(data: SceneInfo) {
@@ -32,8 +29,5 @@ export function delSceneApi(id: string) {
 }
 
 export function updateSceneApi(data: SceneInfo) {
-  return putRequest<SceneInfo, SceneInfo>(
-    baseUrl + prefix + `/${data.id}`,
-    data
-  )
+  return putRequest<SceneInfo, SceneInfo>(baseUrl + prefix + `/${data.id}`, data)
 }

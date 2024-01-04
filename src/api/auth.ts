@@ -20,9 +20,5 @@ const prefix = '/auth'
 const baseUrl = getServiceName('admin')
 
 export function loginApi(data: LoginParams) {
-  return postRequest<LoginParams, LoginRes>(
-    baseUrl + prefix + '/login',
-    {},
-    data
-  )
+  return postRequest<LoginParams, LoginRes>(baseUrl + prefix + '/login', {}, data)
 }

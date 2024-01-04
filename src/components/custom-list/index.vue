@@ -2,13 +2,7 @@
   <view class="h-full">
     <nut-row :gutter="10">
       <nut-col :span="21">
-        <nut-searchbar
-          v-if="hasSearch"
-          v-model="val"
-          :placeholder="placeholder"
-          @search="onSearch"
-          @clear="onClear"
-        >
+        <nut-searchbar v-if="hasSearch" v-model="val" :placeholder="placeholder" @search="onSearch" @clear="onClear">
           <template #rightin>
             <slot name="rightin">
               <Search />
@@ -22,16 +16,10 @@
         </slot>
       </nut-col>
     </nut-row>
-    <view
-      class="overflow-y-auto mt-2"
-      :style="{ height: hasSearch ? 'calc(100% - 58px)' : '100%' }"
-    >
+    <view class="overflow-y-auto mt-2" :style="{ height: hasSearch ? 'calc(100% - 58px)' : '100%' }">
       <scroll-view :scroll-y="true" class="h-full" @scrolltolower="lower">
         <slot name="list" />
-        <nut-divider
-          v-if="hasPagination && Number(pageTotal) !== pageParams.page"
-          dashed
-        >
+        <nut-divider v-if="hasPagination && Number(pageTotal) !== pageParams.page" dashed>
           <IconFont name="loading" />加载更多
         </nut-divider>
       </scroll-view>
@@ -131,7 +119,6 @@ const onClear = async () => {
 const time = ref()
 // 滚动到底部事件
 async function lower() {
-  console.log('111')
   // 防抖处理
   clearTimeout(time.value)
   time.value = setTimeout(async () => {

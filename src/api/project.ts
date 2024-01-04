@@ -28,10 +28,7 @@ const baseUrl = getServiceName('opmcp')
 const prefix = '/project'
 
 export function getProjectPageApi(params?: PageParams) {
-  return getRequest<PageParams, RespPageBean<ProjectInfo>>(
-    baseUrl + prefix + '/page',
-    params
-  )
+  return getRequest<PageParams, RespPageBean<ProjectInfo>>(baseUrl + prefix + '/page', params)
 }
 
 export function getProjectInfoApi(id: string) {

@@ -48,13 +48,9 @@ const serviceName = getServiceName('opmcp')
 
 const gid = ref<string>(uuid())
 
-const extraParams = computed<Recordable>(() =>
-  _.assign(props.extraParams, { gid: gid.value })
-)
+const extraParams = computed<Recordable>(() => _.assign(props.extraParams, { gid: gid.value }))
 
-const defaultUrl = computed<string>(
-  () => `${props.url}?${qs.stringify(extraParams.value)}`
-)
+const defaultUrl = computed<string>(() => `${props.url}?${qs.stringify(extraParams.value)}`)
 
 function onUpload() {
   Taro.chooseImage({

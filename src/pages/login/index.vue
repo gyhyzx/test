@@ -6,43 +6,22 @@
     </view>
     <view class="mx-12 mt-10 rounded-lg box-border">
       <nut-form ref="formRef" :model-value="loginParams">
-        <nut-form-item
-          prop="username"
-          :rules="[{ required: true, message: '请输入用户名' }]"
-        >
-          <nut-input
-            v-model="loginParams.username"
-            class="nut-input-text"
-            placeholder="请输入用户名"
-            type="text"
-          >
+        <nut-form-item prop="username" :rules="[{ required: true, message: '请输入用户名' }]">
+          <nut-input v-model="loginParams.username" class="nut-input-text" placeholder="请输入用户名" type="text">
             <template #left>
               <People />
             </template>
           </nut-input>
         </nut-form-item>
-        <nut-form-item
-          prop="password"
-          :rules="[{ validator: formValidatePass }]"
-        >
-          <nut-input
-            v-model="loginParams.password"
-            class="nut-input-text"
-            placeholder="请输入密码"
-            type="password"
-          >
+        <nut-form-item prop="password" :rules="[{ validator: formValidatePass }]">
+          <nut-input v-model="loginParams.password" class="nut-input-text" placeholder="请输入密码" type="password">
             <template #left>
               <Marshalling />
             </template>
           </nut-input>
         </nut-form-item>
         <nut-form-item>
-          <nut-button
-            style="width: 100%"
-            :loading="loading"
-            shape="square"
-            type="primary"
-            @click="onLogin"
+          <nut-button style="width: 100%" :loading="loading" shape="square" type="primary" @click="onLogin"
             >登录</nut-button
           >
         </nut-form-item>

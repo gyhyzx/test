@@ -3,11 +3,7 @@ export function uuid() {
     if (typeof crypto.randomUUID === 'function') return crypto.randomUUID()
   }
   let timestamp = new Date().getTime()
-  let performanceNow =
-    (typeof performance !== 'undefined' &&
-      performance.now &&
-      performance.now() * 1000) ||
-    0
+  let performanceNow = (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     let random = Math.random() * 16
     if (timestamp > 0) {

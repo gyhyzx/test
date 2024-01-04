@@ -10,34 +10,32 @@
       <nut-cell>
         <nut-radio label="1"
           >定位打卡
-          <template #icon><Success /> </template>
-          <template #checkedIcon> <Success color="red" /> </template>
+          <template #icon>
+            <Success />
+          </template>
+          <template #checkedIcon>
+            <Success color="red" />
+          </template>
         </nut-radio>
       </nut-cell>
       <nut-cell>
         <nut-radio label="2"
           >二维码打卡
-          <template #icon> <Success /> </template>
-          <template #checkedIcon> <Success color="red" /> </template>
+          <template #icon>
+            <Success />
+          </template>
+          <template #checkedIcon>
+            <Success color="red" />
+          </template>
         </nut-radio>
       </nut-cell>
     </nut-radio-group>
     <view class="box-border px-10 pt-50 text-center">
-      <nut-button
-        :loading="loading"
-        type="primary"
-        style="width: 100%"
-        shape="square"
-        @click="onClickBtn"
+      <nut-button :loading="loading" type="primary" style="width: 100%" shape="square" @click="onClickBtn"
         >确认</nut-button
       >
     </view>
-    <nut-dialog
-      v-model:visible="dialogVisible"
-      :content="content"
-      @cancel="dialogVisible = false"
-      @ok="onOk"
-    />
+    <nut-dialog v-model:visible="dialogVisible" :content="content" @cancel="dialogVisible = false" @ok="onOk" />
   </basic-layout>
 </template>
 

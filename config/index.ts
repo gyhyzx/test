@@ -89,9 +89,7 @@ export default defineConfig(async (merge) => {
             }
           }
         })
-        chain
-          .plugin('analyzer')
-          .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
+        chain.plugin('analyzer').use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
         chain.plugin('unplugin-vue-components').use(
           ComponentsPlugin({
             dirs: [
@@ -115,12 +113,7 @@ export default defineConfig(async (merge) => {
               'pinia'
             ],
             dts: true,
-            dirs: [
-              './src/store/**',
-              './src/api/**',
-              './src/busPackage/api/**',
-              './src/busPackage/utils/**'
-            ],
+            dirs: ['./src/store/**', './src/api/**', './src/busPackage/api/**', './src/busPackage/utils/**'],
             vueTemplate: true
           })
         )

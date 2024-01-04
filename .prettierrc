@@ -4,5 +4,6 @@
   "semi": false,
   "trailingComma": "none",
   "bracketSpacing": true,
-  "proseWrap": "always"
+  "proseWrap": "always",
+  "printWidth": 120
 }

@@ -128,10 +128,7 @@ export async function postRequest<reqT = any, resT = any>(
   return res.data
 }
 
-export async function getRequest<reqT = any, resT = any>(
-  url: string,
-  params?: reqT
-): Promise<resT> {
+export async function getRequest<reqT = any, resT = any>(url: string, params?: reqT): Promise<resT> {
   const res = await Taro.request<resT>({
     method: 'GET',
     url: url,
@@ -141,10 +138,7 @@ export async function getRequest<reqT = any, resT = any>(
   return res.data
 }
 
-export async function delRequest<reqT = string | number>(
-  url: string,
-  id: reqT
-): Promise<void> {
+export async function delRequest<reqT = string | number>(url: string, id: reqT): Promise<void> {
   await Taro.request({
     method: 'DELETE',
     url: url + `/${id}`,

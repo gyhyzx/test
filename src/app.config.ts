@@ -1,11 +1,6 @@
 export default defineAppConfig({
   // 路由
-  pages: [
-    'pages/login/index',
-    'pages/home/index',
-    'pages/notice/index',
-    'pages/user/index'
-  ],
+  pages: ['pages/login/index', 'pages/home/index', 'pages/notice/index', 'pages/user/index'],
   // 分包
   subPackages: [
     {

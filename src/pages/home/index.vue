@@ -21,13 +21,8 @@
           </nut-col>
           <nut-col :span="14" class="relative h-full">
             <span class="custom-title">{{ item.name }}</span>
-            <span class="font-light text-xs opacity-70 custom-content">{{
-              item.content
-            }}</span>
-            <span
-              class="font-light text-xs opacity-90 absolute bottom-0 right-0"
-              >{{ item.startTime }}</span
-            >
+            <span class="font-light text-xs opacity-70 custom-content">{{ item.content }}</span>
+            <span class="font-light text-xs opacity-90 absolute bottom-0 right-0">{{ item.startTime }}</span>
           </nut-col>
         </nut-row>
       </template>
@@ -75,6 +70,7 @@ function onGoProjectDetail(item: ProjectInfo) {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+
 .custom-content {
   overflow: hidden;
   white-space: nowrap;

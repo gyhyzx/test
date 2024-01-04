@@ -2,11 +2,7 @@
   <basic-layout>
     <nut-cell title="选择打卡类型">
       <template #link>
-        <nut-radio-group
-          v-model="searchParams.radioVal"
-          direction="horizontal"
-          @change="onSearch"
-        >
+        <nut-radio-group v-model="searchParams.radioVal" direction="horizontal" @change="onSearch">
           <nut-radio label="1">定位打卡</nut-radio>
           <nut-radio label="2">二维码打卡</nut-radio>
         </nut-radio-group>
@@ -14,11 +10,7 @@
     </nut-cell>
     <nut-cell
       title="选择日期范围"
-      :desc="
-        searchParams.date && searchParams.date[0]
-          ? `${searchParams.date[0]}至${searchParams.date[1]}`
-          : '请选择'
-      "
+      :desc="searchParams.date && searchParams.date[0] ? `${searchParams.date[0]}至${searchParams.date[1]}` : '请选择'"
       @click="isVisible = true"
     >
     </nut-cell>
@@ -37,11 +29,7 @@
     <view class="box-border flex justify-end px-2">
       <nut-button type="success" shape="square">导出数据</nut-button>
     </view>
-    <nut-table
-      class="p-2 box-border h-840 overflow-y-auto"
-      :columns="columns"
-      :data="tableData"
-    ></nut-table>
+    <nut-table class="p-2 box-border h-840 overflow-y-auto" :columns="columns" :data="tableData"></nut-table>
     <nut-pagination
       v-model="page"
       class="flex justify-end p-2"

@@ -15,20 +15,8 @@
           <nut-swipe v-for="item in sceneList" :key="item.id" :name="item.id">
             <nut-cell :title="item.title" :sub-title="item.description" />
             <template #right>
-              <nut-button
-                shape="square"
-                style="height: 100%"
-                type="info"
-                @click="onUpdate(item)"
-                >修改</nut-button
-              >
-              <nut-button
-                shape="square"
-                style="height: 100%"
-                type="danger"
-                @click="onDel(item)"
-                >删除</nut-button
-              >
+              <nut-button shape="square" style="height: 100%" type="info" @click="onUpdate(item)">修改</nut-button>
+              <nut-button shape="square" style="height: 100%" type="danger" @click="onDel(item)">删除</nut-button>
             </template>
           </nut-swipe>
         </nut-swipe-group>
@@ -37,25 +25,13 @@
     <nut-action-sheet v-model:visible="visible" :title="title">
       <nut-form>
         <nut-form-item label="标题">
-          <nut-input
-            v-model="formData.title"
-            class="nut-input-text"
-            type="text"
-          />
+          <nut-input v-model="formData.title" class="nut-input-text" type="text" />
         </nut-form-item>
         <nut-form-item label="类型">
-          <nut-input
-            v-model="formData.type"
-            class="nut-input-text"
-            type="text"
-          />
+          <nut-input v-model="formData.type" class="nut-input-text" type="text" />
         </nut-form-item>
         <nut-form-item label="描述">
-          <nut-input
-            v-model="formData.description"
-            class="nut-input-text"
-            type="text"
-          />
+          <nut-input v-model="formData.description" class="nut-input-text" type="text" />
         </nut-form-item>
         <nut-form-item label="纬度">
           <nut-input-number
@@ -95,9 +71,7 @@
           />
         </nut-form-item>
         <nut-cell class="flex justify-end">
-          <nut-button type="primary" size="small" @click="onSubmit"
-            >提交</nut-button
-          >
+          <nut-button type="primary" size="small" @click="onSubmit">提交</nut-button>
         </nut-cell>
       </nut-form>
     </nut-action-sheet>

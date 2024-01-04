@@ -1,5 +1,5 @@
 <template>
-  <basic-layout class="mx-2 pt-4 box-border">
+  <basic-layout class="mx-2 pt-2 box-border">
     <custom-list
       placeholder="输入项目名称搜索..."
       :has-add="false"

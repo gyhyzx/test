@@ -59,6 +59,7 @@
     "dayjs": "^1.11.10",
     "pinia": "^2.1.7",
     "qs": "^6.11.2",
+    "sm-crypto": "^0.3.13",
     "taro-plugin-pinia": "^1.0.0",
     "vue": "^3.3.8"
   },
@@ -73,6 +74,7 @@
     "@types/lodash-es": "^4.17.11",
     "@types/node": "^18.15.11",
     "@types/qs": "^6.9.11",
+    "@types/sm-crypto": "^0.3.4",
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",

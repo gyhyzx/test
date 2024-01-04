@@ -14,8 +14,8 @@ const theme = computed<string>(() => {
 const themeVars = reactive({
   searchbarInputBackground: '@commonBgColor',
   tabsTitlesItemColor: '@commonTxtColor',
-  tabsTitlesBackgroundColor: '@commonBgColor',
-  tabsTitlesItemActiveColor: '@commonTxtColor',
-  collapseWrapperContentBackgroundColor: '@commonBgColor'
+  tabsTitlesBackgroundColor: '@specialBgColor',
+  tabsTitlesItemActiveColor: '@specialBgColor',
+  collapseWrapperContentBackgroundColor: '@specialBgColor'
 })
 </script>

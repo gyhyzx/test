@@ -23,8 +23,8 @@
       </nut-col>
     </nut-row>
     <view
-      class="overflow-y-auto"
-      :style="{ height: hasSearch ? 'calc(100% - 50px)' : '100%' }"
+      class="overflow-y-auto mt-2"
+      :style="{ height: hasSearch ? 'calc(100% - 58px)' : '100%' }"
     >
       <scroll-view :scroll-y="true" class="h-full" @scrolltolower="lower">
         <slot name="list" />
@@ -94,7 +94,7 @@ const listData = ref<Recordable[] | RespPageBean>([])
 
 async function getListData(type: 'list' | 'concat') {
   listData.value = await props.queryFn(params.value)
-  // 如果带分页，只返回records
+  // 如果带分页,只返回records
   if (props.hasPagination) {
     pageTotal.value = (listData.value as RespPageBean).pages
     emits(type, (listData.value as RespPageBean).records)
@@ -104,7 +104,7 @@ async function getListData(type: 'list' | 'concat') {
 }
 
 async function beforeQuery() {
-  // 搜索前如果带分页则重置分页参数，set入params
+  // 搜索前如果带分页则重置分页参数,set入params
   if (props.hasPagination) {
     pageParams.value.page = 1
     _.assign(params.value, pageParams.value)
@@ -131,6 +131,7 @@ const onClear = async () => {
 const time = ref()
 // 滚动到底部事件
 async function lower() {
+  console.log('111')
   // 防抖处理
   clearTimeout(time.value)
   time.value = setTimeout(async () => {

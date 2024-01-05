@@ -5,12 +5,11 @@ import ComponentsPlugin from 'unplugin-vue-components/webpack'
 import NutUIResolver from '@nutui/auto-import-resolver'
 import AutoImport from 'unplugin-auto-import/webpack'
 import path from 'path'
-import UnoCSS from 'unocss/webpack'
 
 export default defineConfig(async (merge) => {
   const baseConfig: UserConfigExport = {
-    projectName: 'zhukai-uniapp-front',
-    date: '2023-11-8',
+    projectName: 'test',
+    date: '2024-1-5',
     designWidth(input: any) {
       // 配置 NutUI 375 尺寸
       if (input?.file?.replace(/\\+/g, '/').indexOf('@nutui') > -1) {
@@ -30,7 +29,7 @@ export default defineConfig(async (merge) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
-    plugins: ['taro-plugin-pinia', '@tarojs/plugin-html'],
+    plugins: ['@tarojs/plugin-html'],
     sass: {
       data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`
     },
@@ -92,32 +91,18 @@ export default defineConfig(async (merge) => {
         chain.plugin('analyzer').use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
         chain.plugin('unplugin-vue-components').use(
           ComponentsPlugin({
-            dirs: [
-              './src/components/**',
-              './src/pages/*/components/**',
-              './src/busPackage/pages/*/components/**',
-              './src/busPackage/components/**'
-            ],
+            dirs: [],
             include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
             resolvers: [NutUIResolver({ taro: true })]
           })
         )
         chain.plugin('unplugin-auto-import').use(
           AutoImport({
-            imports: [
-              'vue',
-              {
-                'lodash-es': [['*', '_']],
-                dayjs: [['default', '_d']]
-              },
-              'pinia'
-            ],
+            imports: ['vue', 'pinia'],
             dts: true,
-            dirs: ['./src/store/**', './src/api/**', './src/busPackage/api/**', './src/busPackage/utils/**'],
             vueTemplate: true
           })
         )
-        chain.plugin('unocss').use(UnoCSS())
       },
       // 这个东西主要为了消除自动引入顺序不同报的warning、暂时没啥好的解决方法
       miniCssExtractPluginOption: {
@@ -155,7 +140,6 @@ export default defineConfig(async (merge) => {
             resolvers: [NutUIResolver({ taro: true })]
           })
         )
-        chain.plugin('unocss').use(UnoCSS())
       }
     },
     rn: {

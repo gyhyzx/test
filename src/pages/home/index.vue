@@ -1,79 +1,43 @@
 <template>
-  <basic-layout class="mx-2 pt-2 box-border">
-    <custom-list
-      placeholder="输入项目名称搜索..."
-      :has-add="false"
-      :search-fields="['name']"
-      :query-fn="getProjectPageApi"
-      @list="onList"
-      @concat="onConcat"
-    >
-      <template #list>
-        <nut-row
-          v-for="item in projectList"
-          :key="item.id"
-          class="my-2 h-180 w-full shadow-md rounded-md"
-          :gutter="10"
-          @click="onGoProjectDetail(item)"
-        >
-          <nut-col :span="10" class="h-full">
-            <img :src="item.coverUrl" alt="" class="h-full w-full" />
-          </nut-col>
-          <nut-col :span="14" class="relative h-full">
-            <span class="custom-title">{{ item.name }}</span>
-            <span class="font-light text-xs opacity-70 custom-content">{{ item.content }}</span>
-            <span class="font-light text-xs opacity-90 absolute bottom-0 right-0">{{ item.startTime }}</span>
-          </nut-col>
-        </nut-row>
-      </template>
-    </custom-list>
-  </basic-layout>
+  <view>
+    <nut-button type="primary" @click="onClick">测试</nut-button>
+    <nut-action-sheet v-model:visible="visible" title="测试">
+      <nut-form>
+        <nut-form-item label="拍摄">
+          <nut-grid :column-num="2" :border="false">
+            <nut-grid-item v-for="item in fileList" :key="item.id">
+              <nut-badge :color="'#ffffff'">
+                <template #icon>
+                  <CircleClose />
+                </template>
+                <img class="w-200 h-200" :src="item.sts" alt="" />
+              </nut-badge>
+            </nut-grid-item>
+            <nut-grid-item>
+              <nut-uploader url=""></nut-uploader>
+            </nut-grid-item>
+          </nut-grid>
+        </nut-form-item>
+      </nut-form>
+    </nut-action-sheet>
+  </view>
 </template>
 
 <script setup lang="ts">
-import { ProjectInfo, getProjectPageApi } from '@/api/project'
-import Taro from '@tarojs/taro'
+import { CircleClose } from '@nutui/icons-vue-taro'
 
 definePageConfig({
   navigationBarTitleText: '首页'
 })
 
-// 进到首页请求未读消息数设置角标
-onMounted(async () => {
-  Taro.setTabBarBadge({
-    index: 1,
-    text: '8'
-  })
-})
+export interface FileInfo {
+  id?: string
+  sts?: string
+}
 
-// 项目列表显示
-const projectList = ref<ProjectInfo[]>([])
-const onList = (list: ProjectInfo[]) => {
-  projectList.value = list
-}
-const onConcat = (list: ProjectInfo[]) => {
-  projectList.value = _.concat(projectList.value, list)
-}
-function onGoProjectDetail(item: ProjectInfo) {
-  Taro.navigateTo({
-    url: `/busPackage/pages/project/detail?projectId=${item.id}`
-  })
+const fileList = ref<FileInfo[]>([])
+const visible = ref<boolean>(false)
+const onClick = () => {
+  visible.value = true
 }
 </script>
-
-<style lang="scss">
-.custom-title {
-  word-break: break-all;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.custom-content {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-</style>
